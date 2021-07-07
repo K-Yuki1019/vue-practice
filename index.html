@@ -18,7 +18,18 @@
             <th>-</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <tr v-for="item in todos" :[key]="item.id">
+            <th>{{ item.id }}</th>
+            <td>{{ item.todo }}</td>
+            <td class="state">
+              <button>{{ item.state }}</button>
+            </td>
+            <td class="button">
+              <button>削除</button>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
