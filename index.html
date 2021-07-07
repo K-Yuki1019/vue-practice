@@ -13,7 +13,7 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>やること</th>
+            <th>コメント</th>
             <th>状態</th>
             <th>-</th>
           </tr>
@@ -31,6 +31,11 @@
           </tr>
         </tbody>
       </table>
+      <h2>新しい作業の追加</h2>
+      <form class="add-form">
+        <input type="text" v-on:submit.prevent="doAdd()" ref="comment" />
+        <button>追加</button>
+      </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="index.js"></script>
