@@ -33,7 +33,7 @@
       </table>
       <h2>新しい作業の追加</h2>
       <form class="add-form">
-        <input type="text" v-on:submit.prevent="doAdd()" ref="comment" />
+        <input type="text" @submit.prevent="doAdd()" ref="comment" />
         <button>追加</button>
       </form>
     </div>
