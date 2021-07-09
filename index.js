@@ -31,5 +31,13 @@ const app = new Vue({
       });
       comment.value = "";
     },
+    watch: {
+      todos: {
+        handler: function () {
+          todoStorage.save(todos);
+        },
+        deep: true,
+      },
+    },
   },
 });
