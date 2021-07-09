@@ -11,8 +11,8 @@
     <div id="app">
       <h1>チュートリアルTodoリスト</h1>
       <label v-for="label of options">
-        <input type="radio" v-model="current" v-bind:value="label.value" />
-        {{ label.label }}
+        <input type="radio" v-model="current" v-bind:value="label.value" />{{
+        label.label }}
       </label>
       <table>
         <thead>
@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in todos" :[key]="item.id">
+          <tr v-for="item in computedTodos" :[key]="item.id">
             <th>{{ item.id }}</th>
             <td>{{ item.comment }}</td>
             <td class="state">
