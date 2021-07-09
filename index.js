@@ -18,6 +18,17 @@ const app = new Vue({
   data: {
     todos: [],
   },
+  watch: {
+    todos: {
+      handler: function (todos) {
+        todoStorage.save(todos);
+      },
+      deep: true,
+    },
+  },
+  created() {
+    this.todos = todoStorage.fetch();
+  },
   methods: {
     doAdd: function (event, value) {
       var comment = this.$ref.comment;
@@ -30,14 +41,6 @@ const app = new Vue({
         state: [0],
       });
       comment.value = "";
-    },
-    watch: {
-      todos: {
-        handler: function () {
-          todoStorage.save(todos);
-        },
-        deep: true,
-      },
     },
   },
 });
