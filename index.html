@@ -28,7 +28,9 @@
             <th>{{ item.id }}</th>
             <td>{{ item.comment }}</td>
             <td class="state">
-              <button @click="doChangeState(item)">{{ item.state }}</button>
+              <button @click="doChangeState(item)">
+                {{ labels[item.state] }}
+              </button>
             </td>
             <td class="button">
               <button @click.ctrl="doRemove()">削除</button>
