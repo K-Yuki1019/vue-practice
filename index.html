@@ -1,48 +1,58 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>初めてのVue</title>
-    <link rel="stylesheet" href="index.css" />
+    <meta charset="utf-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <div id="app">
-      <h1>チュートリアルTodoリスト</h1>
-      <label v-for="label of options">
+      <h1>チュートリアルToDoリスト</h1>
+
+      <label v-for="label in options">
         <input type="radio" v-model="current" v-bind:value="label.value" />{{
         label.label }}
       </label>
+
+      （{{ computedTodos.length }} 件を表示）
+
       <table>
-        <thead>
+        <thead v-pre>
           <tr>
-            <th>ID</th>
-            <th>コメント</th>
-            <th>状態</th>
-            <th>-</th>
+            <th class="id">ID</th>
+            <th class="comment">コメント</th>
+            <th class="state">状態</th>
+            <th class="button">-</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in computedTodos" :[key]="item.id">
+          <tr
+            v-for="item in computedTodos"
+            v-bind:key="item.id"
+            v-bind:class="{done:item.state}"
+          >
             <th>{{ item.id }}</th>
             <td>{{ item.comment }}</td>
             <td class="state">
-              <button @click="doChangeState(item)">{{ item.state }}</button>
+              <button v-on:click="doChangeState(item)">
+                {{ labels[item.state] }}
+              </button>
             </td>
             <td class="button">
-              <button @click.ctrl="doRemove()">削除</button>
+              <button v-on:click.ctrl="doRemove(item)">削除</button>
             </td>
           </tr>
         </tbody>
       </table>
+
       <h2>新しい作業の追加</h2>
-      <form class="add-form">
-        <input type="text" @submit.prevent="doAdd()" ref="comment" />
-        <button>追加</button>
+      <form class="add-form" v-on:submit.prevent="doAdd">
+        コメント <input type="text" ref="comment" />
+        <button type="submit">追加</button>
       </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./index.js"></script>
   </body>
 </html>
